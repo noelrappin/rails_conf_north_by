@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gig:</strong>
+  <%= @ticket_order.gig_id %>
+</p>
+
+<%= link_to "Edit", edit_ticket_order_path(@ticket_order) %> |
+<%= link_to "Back", ticket_orders_path %>

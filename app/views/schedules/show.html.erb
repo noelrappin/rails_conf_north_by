@@ -1,0 +1,166 @@
+<section>
+  <div class="columns is-gapless">
+    <% @schedule.schedule_days.each do |schedule_day| %>
+      <div class="column js--schedule-day has-text-centered"
+           data-associated="day-body-<%= schedule_day.day.by_example("2006-01-02") %>">
+        <%= schedule_day.day.by_example("Jan 2") %>
+      </div>
+    <% end %>
+
+    <div class="column js--show-all-days">Show All</div>
+  </div>
+
+  <div class="columns is-centered">
+    <div class="column is-four-fifths">
+      <div class="control">
+        <%= text_field_tag("query", "",
+              placeholder: "Search concerts", type: "search",
+              id: "search_query", class: "input") %>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="button is-primary" id="js--toggle-frameworks">
+        Only Favorites
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-centered">
+    <div class="column">
+      <div class="button is-primary" id="js--filter-button">
+        Filter Events &nbsp;
+        <span class="icon">
+          <i class="fas fa-arrow-down"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="filters is-hidden" id="js--filters">
+    <div class="columns is-centered">
+      <div class="column">
+        <h3 class="title is-4">Genre</h3>
+      </div>
+    </div>
+
+    <div class="columns">
+      <% genres = @concerts.map(&:genre_tags).join(",").split(",").uniq.sort %>
+      <% genres.in_groups(6) do |genre_list| %>
+        <div class="column">
+          <% genre_list.each do |genre| %>
+            <% next unless genre %>
+            <div class="control">
+              <label class="checkbox">
+                <%= check_box_tag(:genre, genre, false,
+                      class: "js--filter-genre",
+                      id: "genre-#{genre.parameterize}") %>
+                &nbsp;
+                <%= genre %>
+              </label>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <h3 class="title is-4">Event Type</h3>
+        <% @concerts.map(&:ilk).uniq.sort.each do |ilk| %>
+          <div class="control">
+            <label class="checkbox">
+              <%= check_box_tag(:ilk, ilk, false,
+                    class: "js--filter-ilk",
+                    id: "ilk-#{ilk}") %>
+              &nbsp;
+              <%= ilk.humanize %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="column">
+        <h3 class="title is-4">Venue</h3>
+        <% @concerts.map(&:venue).uniq.sort_by(&:name).each do |venue| %>
+          <div class="control">
+            <label class="checkbox">
+              <%= check_box_tag(:venue, venue.id, false,
+                    class: "js--filter-venue", id: "venue-#{venue.id}") %>
+              &nbsp;
+              <%= venue.name %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="column">
+        <h3 class="title is-4">Access</h3>
+        <% @concerts.map(&:access).uniq.sort.each do |access| %>
+          <div class="control">
+            <label class="checkbox">
+              <%= check_box_tag(:access, access, false,
+                    class: "js--filter-access", id: "access-#{access}") %>
+              &nbsp;
+              <%= access.humanize %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <% @schedule.schedule_days.each do |schedule_day| %>
+    <section class="day-body"
+             id="day-body-<%= schedule_day.day.by_example("2006-01-02") %>">
+      <h2 class="title is-3">
+        <%= schedule_day.day.by_example("Monday, January 2, 2006") %>
+      </h2>
+      <% schedule_day.concerts.sort_by(&:start_time).each do |concert| %>
+        <article class="concert"
+                 data-ilk="<%= concert.ilk %>"
+                 data-genres="<%= concert.genre_parameters %>"
+                 data-venue="<%= concert.venue_id %>"
+                 data-access="<%= concert.access %>">
+          <div class="columns">
+            <div class="column is-size-4 is-one-fifth">
+              <%= concert.start_time.by_example("3:04 PM") %>
+            </div>
+
+            <div class="column is-three-fifths">
+              <div class="name">
+                <div class="is-size-5 has-text-weight-bold">
+                  <%= link_to(concert.name, concert) %>
+                </div>
+              </div>
+              <div class="bands">
+                <%= concert.bands.map(&:name).join(", ") %>
+              </div>
+              <div class="description">
+                <%= concert.description %>
+              </div>
+              <div class="genres">
+                <%= concert.genre_tags.split(",").to_sentence %>
+              </div>
+              <div class="has-text-grey has-text-weight-bold">
+                <%= concert.ilk.humanize %>
+                &nbsp;|&nbsp;
+                <%= concert.venue.name %>
+                &nbsp;|&nbsp;
+                <%= concert.duration_minutes %> mins.
+                <% if concert.access != "general" %>
+                  &nbsp;|&nbsp;
+                  <%= concert.access.humanize %>
+                  &nbsp;only.
+                <% end %>
+              </div>
+            </div>
+            <div class="column is-size-4 is-one-fifth">On Sale</div>
+          </div>
+        </article>
+      <% end %>
+    </section>
+  <% end %>
+</section>

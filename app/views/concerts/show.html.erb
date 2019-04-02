@@ -1,0 +1,59 @@
+<h1 class="title is-size-1"><%= @concert.name %></h1>
+
+<h2 class="subtitle is-size-2">Ticket Info</h2>
+
+<h3 class="is-size-3"><%= @concert.ilk %></h3>
+<h3 class="is-size-3"><%= @concert.access %></h3>
+
+<h3 class="is-size-3">
+  Start Date: &nbsp;
+  <%= @concert.start_time.by_example("Jan 02, 2006") %>
+</h3>
+
+<h3 class="is-size-3">Venue: <%= @concert.venue.name %></h3>
+
+<h3 class="is-size-3">Schedule:</h3>
+<% running_time = @concert.start_time %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Band</th>
+      <th>Genres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @concert.gigs.each do |gig| %>
+      <tr>
+        <td><%= running_time.by_example("03:04 PM") %></td>
+        <td><%= gig.band.name %></td>
+        <td><%= gig.band.genre_tags %></td>
+      <% running_time += (gig.duration_minutes * 60) %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2 class="is-size-2">Tickets</h2>
+
+<table class="table">
+  <tbody>
+    <% @concert.venue.rows.times do %>
+      <tr>
+        <% @concert.venue.seats_per_row.times do %>
+          <td>
+            <div class="icon">
+              <i class="far fa-square"></i>
+            </div>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="actions">
+  <%= link_to("Edit", edit_concert_path(@concert)) %>
+  |
+  <%= link_to("Back", concerts_path) %>
+</div>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ticket Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gig</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ticket_orders.each do |ticket_order| %>
+      <tr>
+        <td><%= ticket_order.gig_id %></td>
+        <td><%= link_to "Show", ticket_order %></td>
+        <td><%= link_to "Edit", edit_ticket_order_path(ticket_order) %></td>
+        <td><%= link_to "Destroy", ticket_order, method: :delete, data: {confirm: "Are you sure?"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Ticket Order", new_ticket_order_path %>
