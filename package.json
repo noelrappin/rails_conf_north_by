@@ -8,11 +8,17 @@
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-class-property": "^1.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.16.4",
     "webpack-dev-server": "^3.2.1"
   },
   "scripts": {
     "eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
     "eslint": "eslint app/javascript",
-    "eslint_fix": "eslint app/javascript --fix"
+    "eslint-fix": "eslint app/javascript --fix"
   }
 }
