@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_02_28_145002) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "bands", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -27,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_02_28_145002) do
     t.string "name"
     t.text "description"
     t.datetime "start_time"
-    t.bigint "venue_id"
+    t.integer "venue_id"
     t.text "genre_tags"
     t.integer "ilk"
     t.integer "access"
@@ -37,8 +34,8 @@ ActiveRecord::Schema.define(version: 2019_02_28_145002) do
   end
 
   create_table "gigs", force: :cascade do |t|
-    t.bigint "band_id"
-    t.bigint "concert_id"
+    t.integer "band_id"
+    t.integer "concert_id"
     t.integer "order"
     t.integer "duration_minutes"
     t.datetime "created_at", precision: 6, null: false
@@ -48,20 +45,20 @@ ActiveRecord::Schema.define(version: 2019_02_28_145002) do
   end
 
   create_table "ticket_orders", force: :cascade do |t|
-    t.bigint "gig_id"
+    t.integer "gig_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["gig_id"], name: "index_ticket_orders_on_gig_id"
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.bigint "gig_id"
+    t.integer "gig_id"
     t.integer "row"
     t.integer "number"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "ticket_orders_id"
+    t.integer "ticket_orders_id"
     t.index ["gig_id"], name: "index_tickets_on_gig_id"
     t.index ["ticket_orders_id"], name: "index_tickets_on_ticket_orders_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"

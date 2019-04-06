@@ -1,77 +1,26 @@
 GENRES = [
-  "Acid Rock",
-  "Adult Alternative",
   "Adult Contemporary",
-  "Adult-Oriented Rock",
-  "Afro Punk",
   "Alternative Rock",
-  "Alternative Rock",
-  "American Trad Rock",
-  "Anatolian Rock",
   "Arena Rock",
-  "Art Punk",
-  "Art Rock",
-  "Blues-Rock",
   "British Invasion",
-  "Britpop",
   "Bubblegum Pop",
-  "Chamber Pop",
-  "Cock Rock",
-  "College Rock",
-  "Crossover Thrash",
-  "Crust Punk",
   "Dance Pop",
-  "Death Metal",
-  "Doom Metal",
-  "Dream Pop",
-  "Electro Pop",
-  "Experimental Rock",
-  "Folk Punk",
-  "Glam Rock",
-  "Goth",
   "Gothic Metal",
-  "Grind Core",
   "Grunge",
   "Hair Metal",
   "Hard Rock",
-  "Hard Rock",
-  "Hardcore Punk",
   "Indie Rock",
-  "Jam Bands",
-  "Lo-fi",
-  "Math Metal",
-  "Math Rock",
   "Metal",
-  "Metal Core",
   "New Wave",
-  "Noise Rock",
-  "Orchestral Pop",
-  "Pop Punk",
   "Pop/Rock",
-  "Post Punk",
   "Power Pop",
-  "Prog-Roc",
-  "Progressive Metal",
   "Progressive Rock",
-  "Psychedelic",
   "Punk",
   "Rock & Roll",
-  "Rockabilly",
-  "Roots Rock",
-  "Shoegaze",
   "Singer/Songwriter",
   "Soft Rock",
-  "Southern Rock",
-  "Spazzcore",
   "Steampunk",
-  "Stoner Metal",
   "Surf",
-  "Synthpop",
-  "Technical Death Metal",
-  "Teen Pop",
-  "Tex-Mex",
-  "Time Lord Rock",
-  "Trash Metal",
 ].freeze
 
 ActiveRecord::Base.transaction do
@@ -95,7 +44,7 @@ ActiveRecord::Base.transaction do
   }
 
   start_date = 30.days.from_now.beginning_of_day
-  end_date = 40.days.from_now.beginning_of_day
+  end_date = 35.days.from_now.beginning_of_day
 
   days = (start_date.to_date..end_date.to_date).to_a
   hours = [13, 15, 17, 19, 21]
@@ -104,7 +53,7 @@ ActiveRecord::Base.transaction do
 
   access = %w[general general general general members vips]
 
-  Array.new(200).each do
+  Array.new(20).each do
     date = days.sample
     concert = Concert.create!(
       description: Faker::Lorem.sentence(2),

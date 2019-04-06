@@ -154,7 +154,6 @@ GEM
     parallel (1.17.0)
     parser (2.6.2.0)
       ast (~> 2.4.0)
-    pg (1.1.4)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -260,6 +259,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.0)
     standard (0.0.36)
       rubocop (>= 0.63)
     sysexits (1.2.0)
@@ -310,7 +310,6 @@ DEPENDENCIES
   htmlbeautifier
   jbuilder
   listen
-  pg
   pry-rails
   pry-rescue
   puma
@@ -321,6 +320,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen
+  sqlite3
   standard
   table_print
   turbolinks
