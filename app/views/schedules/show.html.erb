@@ -1,76 +1,78 @@
 <section>
-  <div class="columns is-gapless">
-    <% @schedule.schedule_days.each do |schedule_day| %>
-      <div class="column has-text-centered"
-           data-associated="day-body-<%= schedule_day.day.by_example("2006-01-02") %>">
-        <%= schedule_day.day.by_example("Jan 2") %>
-      </div>
-    <% end %>
+  <section>
+    <div class="columns is-gapless">
+      <% @schedule.schedule_days.each do |schedule_day| %>
+        <div class="column has-text-centered"
+            data-associated="day-body-<%= schedule_day.day.by_example("2006-01-02") %>">
+          <%= schedule_day.day.by_example("Jan 2") %>
+        </div>
+      <% end %>
 
-    <div class="column">Show All</div>
-  </div>
+      <div class="column">Show All</div>
+    </div>
 
-  <div class="columns is-centered">
-    <div class="column is-four-fifths">
-      <div class="control">
-        <%= text_field_tag("query", "",
-              placeholder: "Search concerts", type: "search",
-              id: "search_query", class: "input") %>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="control">
+          <%= text_field_tag("query", "",
+                placeholder: "Search concerts", type: "search",
+                id: "search_query", class: "input") %>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<br/>
+  <br/>
 
-<section>
-  <% @schedule.schedule_days.each do |schedule_day| %>
-    <section class="day-body"
-             id="day-body-<%= schedule_day.day.by_example("2006-01-02") %>"
-             data-controller="toggle"
-             data-toggle-hidden="false">
-      <h2 class="title is-3">
-        <%= schedule_day.day.by_example("Monday, January 2, 2006") %>
-        <div class="button is-primary"
-             data-action="click->toggle#toggle">
-          <span data-target="toggle.buttonText">Hide</span>
-          &nbsp;
-          <span class="icon" data-target="toggle.icon">
-            <i class="fas fa-arrow-up"></i>
-          </span>
-        </div>
-      </h2>
-      <section data-target="toggle.target">
-        <% schedule_day.concerts.sort_by(&:start_time).each do |concert| %>
-          <article class="concert">
-            <div class="columns">
-              <div class="column is-size-4 is-one-fifth">
-                <%= concert.start_time.by_example("3:04 PM") %>
-              </div>
+  <section>
+    <% @schedule.schedule_days.each do |schedule_day| %>
+      <section class="day-body"
+              id="day-body-<%= schedule_day.day.by_example("2006-01-02") %>"
+              data-controller="toggle"
+              data-toggle-hidden="false">
+        <h2 class="title is-3">
+          <%= schedule_day.day.by_example("Monday, January 2, 2006") %>
+          <div class="button is-primary"
+              data-action="click->toggle#toggle">
+            <span data-target="toggle.buttonText">Hide</span>
+            &nbsp;
+            <span class="icon" data-target="toggle.icon">
+              <i class="fas fa-arrow-up"></i>
+            </span>
+          </div>
+        </h2>
+        <section data-target="toggle.target">
+          <% schedule_day.concerts.sort_by(&:start_time).each do |concert| %>
+            <article class="concert">
+              <div class="columns">
+                <div class="column is-size-4 is-one-fifth">
+                  <%= concert.start_time.by_example("3:04 PM") %>
+                </div>
 
-              <div class="column is-three-fifths">
-                <div class="name">
-                  <div class="is-size-5 has-text-weight-bold">
-                    <%= link_to(concert.name, concert) %>
+                <div class="column is-three-fifths">
+                  <div class="name">
+                    <div class="is-size-5 has-text-weight-bold">
+                      <%= link_to(concert.name, concert) %>
+                    </div>
+                  </div>
+                  <div class="bands">
+                    <%= concert.bands.map(&:name).join(", ") %>
+                  </div>
+                  <div class="genres">
+                    <%= concert.genre_tags.split(",").to_sentence %>
+                  </div>
+                  <div class="has-text-grey has-text-weight-bold">
+                    <%= concert.venue.name %>
                   </div>
                 </div>
-                <div class="bands">
-                  <%= concert.bands.map(&:name).join(", ") %>
-                </div>
-                <div class="genres">
-                  <%= concert.genre_tags.split(",").to_sentence %>
-                </div>
-                <div class="has-text-grey has-text-weight-bold">
-                  <%= concert.venue.name %>
-                </div>
-              </div>
 
-              <div class="column is-size-4 is-one-fifth">On Sale</div>
-            </div>
-          </article>
-        <% end %>
+                <div class="column is-size-4 is-one-fifth">On Sale</div>
+              </div>
+            </article>
+          <% end %>
+        </section>
       </section>
-    </section>
-    <br/>
-  <% end %>
+      <br/>
+    <% end %>
+  </section>
 </section>
