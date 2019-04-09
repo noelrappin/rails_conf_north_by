@@ -1,14 +1,16 @@
-<section>
+<section data-controller="date-filter" data-date-filter-visibile="">
   <section>
     <div class="columns is-gapless">
       <% @schedule.schedule_days.each do |schedule_day| %>
         <div class="column has-text-centered"
-            data-associated="day-body-<%= schedule_day.day.by_example("2006-01-02") %>">
+            data-action="click->date-filter#filterDate"
+            data-target="date-filter.dayButton"
+            data-date="<%= schedule_day.day.by_example("2006-01-02") %>">
           <%= schedule_day.day.by_example("Jan 2") %>
         </div>
       <% end %>
 
-      <div class="column">Show All</div>
+      <div class="column" data-action="click->date-filter#showAll">Show All</div>
     </div>
 
     <div class="columns is-centered">
@@ -27,9 +29,10 @@
   <section>
     <% @schedule.schedule_days.each do |schedule_day| %>
       <section class="day-body"
-              id="day-body-<%= schedule_day.day.by_example("2006-01-02") %>"
+              id="day-body:<%= schedule_day.day.by_example("2006-01-02") %>"
               data-controller="toggle"
-              data-toggle-hidden="false">
+              data-toggle-hidden="false"
+              data-target="date-filter.dayBody">
         <h2 class="title is-3">
           <%= schedule_day.day.by_example("Monday, January 2, 2006") %>
           <div class="button is-primary"
