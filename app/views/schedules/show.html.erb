@@ -3,7 +3,7 @@
     <div class="columns is-gapless">
       <% @schedule.schedule_days.each do |schedule_day| %>
         <div class="column has-text-centered"
-            data-associated="day-body-<%= schedule_day.day.by_example("2006-01-02") %>">
+            data-associated="day-body:<%= schedule_day.day.by_example("2006-01-02") %>">
           <%= schedule_day.day.by_example("Jan 2") %>
         </div>
       <% end %>
@@ -27,7 +27,7 @@
   <section>
     <% @schedule.schedule_days.each do |schedule_day| %>
       <section class="day-body"
-              id="day-body-<%= schedule_day.day.by_example("2006-01-02") %>"
+              id="day-body:<%= schedule_day.day.by_example("2006-01-02") %>"
               data-controller="toggle"
               data-toggle-hidden="false">
         <h2 class="title is-3">

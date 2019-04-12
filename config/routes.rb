@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :bands
   resources :venues
   devise_for :users
+
+  root to: "schedule#show"
 end
