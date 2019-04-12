@@ -27,21 +27,18 @@
   <section>
     <% @schedule.schedule_days.each do |schedule_day| %>
       <section class="day-body"
-              id="day-body:<%= schedule_day.day.by_example("2006-01-02") %>"
-              data-controller="toggle"
-              data-toggle-hidden="false">
+              id="day-body:<%= schedule_day.day.by_example("2006-01-02") %>">
         <h2 class="title is-3">
           <%= schedule_day.day.by_example("Monday, January 2, 2006") %>
-          <div class="button is-primary"
-              data-action="click->toggle#toggle">
-            <span data-target="toggle.buttonText">Hide</span>
+          <div class="button is-primary"">
+            <span>Hide</span>
             &nbsp;
-            <span class="icon" data-target="toggle.icon">
+            <span class="icon">
               <i class="fas fa-arrow-up"></i>
             </span>
           </div>
         </h2>
-        <section data-target="toggle.target">
+        <section>
           <% schedule_day.concerts.sort_by(&:start_time).each do |concert| %>
             <article class="concert">
               <div class="columns">
