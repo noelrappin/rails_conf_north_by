@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :venues
   devise_for :users
 
-  root to: "schedule#show"
+  root to: "schedules#show"
 end
