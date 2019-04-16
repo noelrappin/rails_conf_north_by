@@ -35,12 +35,11 @@ ActiveRecord::Base.transaction do
                   seats_per_row: [10, 15, 20, 25].sample)
   }
 
-  bands = Array.new(100).map {
-    Band.create!(
-      name: Faker::Music::RockBand.name,
-      description: Faker::Lorem.sentence(2),
-      genre_tags: GENRES.sample((1..5).to_a.sample).join(",")
-    )
+  bands = Array.new(30).map {
+    b = Band.find_or_create_by(name: Faker::Music::RockBand.name)
+    b.update(description: Faker::Lorem.sentence(2),
+             genre_tags: GENRES.sample((1..5).to_a.sample).join(","))
+    b
   }
 
   start_date = 30.days.from_now.beginning_of_day
