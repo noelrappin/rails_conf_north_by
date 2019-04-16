@@ -1,24 +1,17 @@
-# README
+# RailsConf 2019 Stimulus and Webpacker Workshop
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This code base is for use during the [2019 RailsConf Stimulus workshop](https://railsconf.com/program/workshops#session-781)
 
-Things you may want to cover:
+In order to run this application, you need SQLlite on your
+machine.
 
-* Ruby version
+This application was developed with Ruby 2.6.2, but should run with any
+version of Ruby 2.5 and up (which is the prerequisite for Rails 6.0)
 
-* System dependencies
+In order to get set up, you should do the following
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Clone and download this repository
+2. run `bundle install`
+3. run `yarn`
+4. go to http://localhost:3000
+5. You should see a webpage that looks like a schedule
