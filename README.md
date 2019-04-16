@@ -11,7 +11,8 @@ version of Ruby 2.5 and up (which is the prerequisite for Rails 6.0)
 In order to get set up, you should do the following
 
 1. Clone and download this repository
-2. run `bundle install`
-3. run `yarn`
-4. go to http://localhost:3000
-5. You should see a webpage that looks like a schedule
+2. In the directory for this repo, make sure you are running Rails 2.5 or up
+3. run `bundle install`
+4. run `yarn`
+5. go to http://localhost:3000
+6. You should see a webpage that looks like a schedule
