@@ -16,3 +16,9 @@ In order to get set up, you should do the following
 4. run `yarn`
 5. go to http://localhost:3000
 6. You should see a webpage that looks like a schedule
+
+
+If you wish to use Docker, you can run
+1. `docker-compose up`
+1. Wait....it will take a while before the app is running.
+1. Go to http://localhost:3000
