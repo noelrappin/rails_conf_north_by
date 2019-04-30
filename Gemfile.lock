@@ -260,7 +260,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.0)
+    sqlite3 (1.4.1)
     standard (0.0.39)
       rubocop (~> 0.67.1)
     sysexits (1.2.0)
