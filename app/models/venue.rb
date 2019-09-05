@@ -12,4 +12,9 @@
 #
 
 class Venue < ApplicationRecord
+
+  def total_seats
+    rows * seats_per_row
+  end
+
 end

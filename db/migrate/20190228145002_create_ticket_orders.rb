@@ -1,7 +1,7 @@
 class CreateTicketOrders < ActiveRecord::Migration[6.0]
   def change
     create_table :ticket_orders do |t|
-      t.references :gig, foreign_key: true
+      t.references :concert, foreign_key: true
 
       t.timestamps
     end

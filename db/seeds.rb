@@ -37,7 +37,7 @@ ActiveRecord::Base.transaction do
 
   bands = Array.new(30).map {
     b = Band.find_or_create_by(name: Faker::Music::RockBand.name)
-    b.update(description: Faker::Lorem.sentence(2),
+    b.update(description: Faker::Lorem.sentence(word_count: 2),
              genre_tags: GENRES.sample((1..5).to_a.sample).join(","))
     b
   }
@@ -55,7 +55,7 @@ ActiveRecord::Base.transaction do
   Array.new(20).each do
     date = days.sample
     concert = Concert.create!(
-      description: Faker::Lorem.sentence(2),
+      description: Faker::Lorem.sentence(word_count: 2),
       start_time: date + hours.sample.hours,
       venue: venues.sample,
       ilk: ilk.sample,
