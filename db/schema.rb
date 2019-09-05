@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 2019_09_05_155434) do
   add_foreign_key "concerts", "venues"
   add_foreign_key "gigs", "bands"
   add_foreign_key "gigs", "concerts"
-  add_foreign_key "ticket_orders", "gigs", column: "concert_id"
-  add_foreign_key "tickets", "gigs", column: "concert_id"
-  add_foreign_key "tickets", "users"
+  add_foreign_key "ticket_orders", "concerts"
+  add_foreign_key "tickets", "concerts"
 end
