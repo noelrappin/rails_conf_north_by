@@ -1,4 +1,4 @@
-<%= form_with(model: concert, local: true) do |form| %>
+<%= simple_form_for(concert) do |form| %>
   <% if concert.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(concert.errors.count, "error") %> prohibited this concert from being saved:</h2>
@@ -11,42 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.datetime_select :start_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :venue_id %>
-    <%= form.text_field :venue_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :genre_tags %>
-    <%= form.text_area :genre_tags %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ilk %>
-    <%= form.number_field :ilk %>
-  </div>
-
-  <div class="field">
-    <%= form.label :access %>
-    <%= form.number_field :access %>
-  </div>
+  <%= form.input :name %>
+  <%= form.input :description %>
+  <%= form.input :start_time, as: :date %>
+  <%= form.association :venue, wrapper: :select %>
+  <%= form.input :genre_tags %>
+  <%= form.input :ilk, collection: Concert.ilks, wrapper: :select %>
+  <%= form.input :access, collection: Concert.accesses, wrapper: :select %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.button(:submit) %>
   </div>
 <% end %>
