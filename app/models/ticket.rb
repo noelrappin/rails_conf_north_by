@@ -16,4 +16,6 @@
 class Ticket < ApplicationRecord
   belongs_to :concert
   belongs_to :user
+
+  enum status: %i[:open, :held, :purchased, :refunded]
 end

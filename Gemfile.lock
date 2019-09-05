@@ -117,6 +117,9 @@ GEM
     faker (2.2.1)
       i18n (>= 0.8)
     ffi (1.11.1)
+    fuubar (2.4.1)
+      rspec-core (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     html_tokenizer (0.0.7)
@@ -212,14 +215,14 @@ GEM
     rspec-mocks (3.8.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
-    rspec-rails (3.8.2)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      railties (>= 3.0)
-      rspec-core (~> 3.8.0)
-      rspec-expectations (~> 3.8.0)
-      rspec-mocks (~> 3.8.0)
-      rspec-support (~> 3.8.0)
+    rspec-rails (4.0.0.beta2)
+      actionpack (>= 4.2)
+      activesupport (>= 4.2)
+      railties (>= 4.2)
+      rspec-core (~> 3.8)
+      rspec-expectations (~> 3.8)
+      rspec-mocks (~> 3.8)
+      rspec-support (~> 3.8)
     rspec-support (3.8.2)
     rubocop (0.72.0)
       jaro_winkler (~> 1.5.1)
@@ -242,14 +245,6 @@ GEM
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    slim (4.0.1)
-      temple (>= 0.7.6, < 0.9)
-      tilt (>= 2.0.6, < 2.1)
-    slim_lint (0.17.1)
-      rake (>= 10, < 13)
-      rubocop (>= 0.50.0)
-      slim (>= 3.0, < 5.0)
-      sysexits (~> 1.1)
     smart_properties (1.15.0)
     spring (2.1.0)
     spring-commands-rspec (1.0.4)
@@ -265,12 +260,10 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.1)
-    sysexits (1.2.0)
     table_print (1.5.6)
-    temple (0.8.1)
+    test-prof (0.10.0)
     thor (0.20.3)
     thread_safe (0.3.6)
-    tilt (2.0.9)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -310,6 +303,7 @@ DEPENDENCIES
   erb_lint
   factory_bot_rails
   faker
+  fuubar
   htmlbeautifier
   jbuilder
   listen
@@ -317,18 +311,18 @@ DEPENDENCIES
   pry-rescue
   puma
   rails
-  rspec-rails
+  rspec-rails (~> 4.0.0.beta2)
   rubocop
   rubocop-performance
   rubocop-rails
   selenium-webdriver
   simple_form
-  slim_lint
   spring
   spring-commands-rspec
   spring-watcher-listen
   sqlite3
   table_print
+  test-prof
   turbolinks
   tzinfo-data
   web-console

@@ -20,11 +20,10 @@ group :development, :test do
   gem "faker"
   gem "pry-rails"
   gem "pry-rescue"
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 4.0.0.beta2"
   gem "rubocop"
   gem "rubocop-performance"
   gem "rubocop-rails"
-  gem "slim_lint"
 end
 
 group :development do
@@ -42,7 +41,9 @@ group :test do
   gem "capybara"
   gem "capybara-screenshot"
   gem "factory_bot_rails"
+  gem "fuubar"
   gem "selenium-webdriver"
+  gem "test-prof"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
