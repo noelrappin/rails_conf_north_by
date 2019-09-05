@@ -2,17 +2,18 @@
 #
 # Table name: tickets
 #
-#  id               :bigint(8)        not null, primary key
-#  gig_id           :bigint(8)
+#  id               :integer          not null, primary key
+#  concert_id       :integer
 #  row              :integer
 #  number           :integer
-#  user_id          :bigint(8)
+#  user_id          :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  ticket_orders_id :bigint(8)
+#  ticket_orders_id :integer
+#  status           :integer
 #
 
 class Ticket < ApplicationRecord
-  belongs_to :gig
+  belongs_to :concert
   belongs_to :user
 end

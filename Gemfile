@@ -21,7 +21,9 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-rescue"
   gem "rspec-rails"
-  gem "standard"
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
   gem "slim_lint"
 end
 

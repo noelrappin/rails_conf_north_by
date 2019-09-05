@@ -1,13 +1,25 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
 AllCops:
-  # Prevent RuboCop from exploding when it finds an older-than-2.2 .ruby-version
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.6
+  TargetRailsVersion: 6.0
   DisabledByDefault: true
-  Exclude: []
+  Exclude:
+    - ".bundle/**/*" # Auto-generated
+    - "bin/**/*"     # Auto-generated
+    - "db/schema.rb" # You can't touch this
+    - "vendor/**/*"  # We cannot solve the world's problems
+    - "node_modules/**/*"  # We cannot solve the world's problems
 
 Bundler/DuplicatedGem:
   Enabled: true
 
 Bundler/InsecureProtocolSource:
+  Enabled: true
+
+Bundler/OrderedGems:
   Enabled: true
 
 Gemspec/DuplicatedAssignment:
@@ -111,18 +123,18 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
 
-Layout/FirstParameterIndentation:
+Layout/IndentFirstArgument:
   Enabled: true
   EnforcedStyle: consistent
 
-Layout/IndentArray:
+Layout/IndentFirstArrayElement:
   Enabled: true
   EnforcedStyle: consistent
 
 Layout/IndentAssignment:
   Enabled: true
 
-Layout/IndentHash:
+Layout/IndentFirstHashElement:
   Enabled: true
   EnforcedStyle: consistent
 
@@ -515,7 +527,7 @@ Performance/FlatMap:
 Performance/InefficientHashSearch:
   Enabled: true
 
-Performance/LstripRstrip:
+Style/Strip:
   Enabled: true
 
 Performance/RangeInclude:
@@ -530,7 +542,7 @@ Performance/RedundantMatch:
 Performance/RedundantMerge:
   Enabled: true
 
-Performance/RedundantSortBy:
+Style/RedundantSortBy:
   Enabled: true
 
 Performance/RegexpMatch:
@@ -539,7 +551,7 @@ Performance/RegexpMatch:
 Performance/ReverseEach:
   Enabled: true
 
-Performance/Sample:
+Style/Sample:
   Enabled: true
 
 Performance/Size:
@@ -554,7 +566,7 @@ Performance/StringReplacement:
 Performance/UnfreezeString:
   Enabled: true
 
-Performance/UnneededSort:
+Style/UnneededSort:
   Enabled: true
 
 Performance/UriDefaultParser:
@@ -671,9 +683,6 @@ Rails/RequestReferer:
 Rails/ReversibleMigration:
   Enabled: true
 
-Rails/SafeNavigation:
-  Enabled: true
-
 Rails/ScopeArgs:
   Enabled: true
 
@@ -688,6 +697,11 @@ Rails/UniqBeforePluck:
 
 Rails/UnknownEnv:
   Enabled: true
+  Environments:
+    - development
+    - production
+    - stage
+    - test
 
 Rails/Validation:
   Enabled: true
