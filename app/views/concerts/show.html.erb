@@ -38,13 +38,12 @@
 
 <table class="table">
   <tbody>
-    <% @concert.venue.rows.times do %>
+    <% @concert.venue.rows.times do |row_number| %>
       <tr>
-        <% @concert.venue.seats_per_row.times do %>
+        <td>Row: <%= row_number + 1 %></td>
+        <% @concert.venue.seats_per_row.times do |seat_number| %>
           <td>
-            <div class="icon">
-              <i class="far fa-square"></i>
-            </div>
+            <span class="button"><%= seat_number + 1 %></span>
           </td>
         <% end %>
       </tr>

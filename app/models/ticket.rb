@@ -16,7 +16,7 @@
 class Ticket < ApplicationRecord
   belongs_to :concert
   belongs_to :user, optional: true
-  belongs_to :ticket_order
+  belongs_to :ticket_order, optional: true
 
   enum status: %i[unsold held purchased refunded]
 end
