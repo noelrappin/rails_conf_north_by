@@ -7,7 +7,7 @@ class CreateTicketOrders < ActiveRecord::Migration[6.0]
     end
 
     change_table :tickets do |t|
-      t.references :ticket_orders
+      t.references :ticket_order
     end
   end
 end

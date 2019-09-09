@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_05_155434) do
+ActiveRecord::Schema.define(version: 2019_09_09_141531) do
 
   create_table "bands", force: :cascade do |t|
     t.string "name"
@@ -44,10 +44,20 @@ ActiveRecord::Schema.define(version: 2019_09_05_155434) do
     t.index ["concert_id"], name: "index_gigs_on_concert_id"
   end
 
+  create_table "shopping_carts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_shopping_carts_on_user_id"
+  end
+
   create_table "ticket_orders", force: :cascade do |t|
     t.integer "concert_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
+    t.integer "count", default: 0
+    t.integer "shopping_cart_id"
     t.index ["concert_id"], name: "index_ticket_orders_on_concert_id"
   end
 
@@ -58,10 +68,10 @@ ActiveRecord::Schema.define(version: 2019_09_05_155434) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "ticket_orders_id"
+    t.integer "ticket_order_id"
     t.integer "status"
     t.index ["concert_id"], name: "index_tickets_on_concert_id"
-    t.index ["ticket_orders_id"], name: "index_tickets_on_ticket_orders_id"
+    t.index ["ticket_order_id"], name: "index_tickets_on_ticket_order_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
@@ -89,6 +99,7 @@ ActiveRecord::Schema.define(version: 2019_09_05_155434) do
   add_foreign_key "concerts", "venues"
   add_foreign_key "gigs", "bands"
   add_foreign_key "gigs", "concerts"
+  add_foreign_key "shopping_carts", "users"
   add_foreign_key "ticket_orders", "concerts"
   add_foreign_key "tickets", "concerts"
 end
