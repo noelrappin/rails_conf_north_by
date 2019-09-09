@@ -19,13 +19,16 @@
 
   <tbody>
     <% @concerts.each do |concert| %>
-      <tr>
+      <tr id="<%= dom_id(concert) %>">
         <td><%= concert.name %></td>
         <td><%= concert.description %></td>
         <td><%= concert.start_time.by_example("Jan 2, 3:04") %></td>
         <td><%= concert.venue.name %></td>
         <td><%= concert.ilk %></td>
         <td><%= concert.access %></td>
+        <td class="unsold_ticket_count">
+          <%= concert.unsold_ticket_count %>
+        </td>
         <td><%= link_to "Show", concert %></td>
         <td><%= link_to "Edit", edit_concert_path(concert) %></td>
         <td><%= link_to "Destroy", concert, method: :delete, data: {confirm: "Are you sure?"} %></td>

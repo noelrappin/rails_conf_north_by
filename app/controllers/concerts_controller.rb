@@ -24,7 +24,9 @@ class ConcertsController < ApplicationController
   # POST /concerts
   # POST /concerts.json
   def create
-    @concert = Concert.new(concert_params)
+    factory = CreatesConcert.new(concert_params)
+    factory.run
+    @concert = factory.concert
 
     respond_to do |format|
       if @concert.save

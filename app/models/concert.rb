@@ -34,4 +34,12 @@ class Concert < ApplicationRecord
   def genre_parameters
     genre_tags.split(",").map(&:parameterize).join(",")
   end
+
+  def unsold_ticket_count
+    tickets.unsold.count
+  end
+
+  def purchased_ticket_count
+    tickets.purchased.count
+  end
 end
