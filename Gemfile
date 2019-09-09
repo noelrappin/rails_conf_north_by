@@ -7,7 +7,8 @@ gem "date_by_example"
 gem "devise"
 gem "jbuilder"
 gem "puma"
-gem "rails", "~> 6.0.0.rc1"
+gem "rails"
+gem "simple_form"
 gem "sqlite3"
 gem "table_print"
 gem "turbolinks"
@@ -19,9 +20,10 @@ group :development, :test do
   gem "faker"
   gem "pry-rails"
   gem "pry-rescue"
-  gem "rspec-rails"
-  gem "standard"
-  gem "slim_lint"
+  gem "rspec-rails", "~> 4.0.0.beta2"
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
 end
 
 group :development do
@@ -39,7 +41,9 @@ group :test do
   gem "capybara"
   gem "capybara-screenshot"
   gem "factory_bot_rails"
+  gem "fuubar"
   gem "selenium-webdriver"
+  gem "test-prof"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

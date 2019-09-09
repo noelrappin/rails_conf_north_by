@@ -2,11 +2,11 @@
 #
 # Table name: concerts
 #
-#  id          :bigint(8)        not null, primary key
+#  id          :integer          not null, primary key
 #  name        :string
 #  description :text
 #  start_time  :datetime
-#  venue_id    :bigint(8)
+#  venue_id    :integer
 #  genre_tags  :text
 #  ilk         :integer
 #  access      :integer
@@ -16,8 +16,9 @@
 
 class Concert < ApplicationRecord
   belongs_to :venue
-  has_many :gigs, -> { order(order: :asc) }, dependent: :destroy
+  has_many :gigs, -> { order(order: :asc) }, dependent: :destroy, inverse_of: :concert
   has_many :bands, through: :gigs
+  has_many :tickets
 
   enum ilk: %i[concert meet-n-greet battle]
   enum access: %i[general members vips]

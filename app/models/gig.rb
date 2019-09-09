@@ -2,9 +2,9 @@
 #
 # Table name: gigs
 #
-#  id               :bigint(8)        not null, primary key
-#  band_id          :bigint(8)
-#  concert_id       :bigint(8)
+#  id               :integer          not null, primary key
+#  band_id          :integer
+#  concert_id       :integer
 #  order            :integer
 #  duration_minutes :integer
 #  created_at       :datetime         not null

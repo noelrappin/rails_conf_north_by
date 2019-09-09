@@ -15,8 +15,9 @@ In order to get set up, you should do the following
 2. In the directory for this repo, make sure you are running Rails 2.5 or up
 3. run `bundle install`
 4. run `yarn`
-5. go to http://localhost:3000
-6. You should see a webpage that looks like a schedule
+5. Start your server by running `rails server`
+6. go to http://localhost:3000
+7. You should see a webpage that looks like a schedule
 
 
 There is also a Docker setup. Please note that Noel will be much less

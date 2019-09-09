@@ -32,12 +32,12 @@ ActiveRecord::Base.transaction do
   venues = Array.new(10).map {
     Venue.create!(name: Faker::University.name,
                   rows: [20, 25, 30, 25, 40, 45, 50].sample,
-                  seats_per_row: [10, 15, 20, 25].sample)
+                  seats_per_row: [10, 10, 12, 15, 20].sample)
   }
 
   bands = Array.new(30).map {
     b = Band.find_or_create_by(name: Faker::Music::RockBand.name)
-    b.update(description: Faker::Lorem.sentence(2),
+    b.update(description: Faker::Lorem.sentence(word_count: 2),
              genre_tags: GENRES.sample((1..5).to_a.sample).join(","))
     b
   }
@@ -55,7 +55,7 @@ ActiveRecord::Base.transaction do
   Array.new(20).each do
     date = days.sample
     concert = Concert.create!(
-      description: Faker::Lorem.sentence(2),
+      description: Faker::Lorem.sentence(word_count: 2),
       start_time: date + hours.sample.hours,
       venue: venues.sample,
       ilk: ilk.sample,
@@ -71,5 +71,13 @@ ActiveRecord::Base.transaction do
       genre_tags: concert.bands.flat_map(&:genres).uniq.join(","),
       name: Faker::Book.title
     )
+    concert.venue.rows.times do |row_number|
+      concert.venue.seats_per_row.times do |seat_number|
+        concert.tickets.create!(
+            row: row_number + 1,
+            number: seat_number + 1,
+            status: %w(purchased unsold).sample)
+      end
+    end
   end
 end

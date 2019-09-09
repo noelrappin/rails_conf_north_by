@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_145002) do
+ActiveRecord::Schema.define(version: 2019_09_09_141531) do
 
   create_table "bands", force: :cascade do |t|
     t.string "name"
@@ -44,23 +44,34 @@ ActiveRecord::Schema.define(version: 2019_02_28_145002) do
     t.index ["concert_id"], name: "index_gigs_on_concert_id"
   end
 
-  create_table "ticket_orders", force: :cascade do |t|
-    t.integer "gig_id"
+  create_table "shopping_carts", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["gig_id"], name: "index_ticket_orders_on_gig_id"
+    t.index ["user_id"], name: "index_shopping_carts_on_user_id"
+  end
+
+  create_table "ticket_orders", force: :cascade do |t|
+    t.integer "concert_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
+    t.integer "count", default: 0
+    t.integer "shopping_cart_id"
+    t.index ["concert_id"], name: "index_ticket_orders_on_concert_id"
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.integer "gig_id"
+    t.integer "concert_id"
     t.integer "row"
     t.integer "number"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "ticket_orders_id"
-    t.index ["gig_id"], name: "index_tickets_on_gig_id"
-    t.index ["ticket_orders_id"], name: "index_tickets_on_ticket_orders_id"
+    t.integer "ticket_order_id"
+    t.integer "status"
+    t.index ["concert_id"], name: "index_tickets_on_concert_id"
+    t.index ["ticket_order_id"], name: "index_tickets_on_ticket_order_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
@@ -88,7 +99,7 @@ ActiveRecord::Schema.define(version: 2019_02_28_145002) do
   add_foreign_key "concerts", "venues"
   add_foreign_key "gigs", "bands"
   add_foreign_key "gigs", "concerts"
-  add_foreign_key "ticket_orders", "gigs"
-  add_foreign_key "tickets", "gigs"
-  add_foreign_key "tickets", "users"
+  add_foreign_key "shopping_carts", "users"
+  add_foreign_key "ticket_orders", "concerts"
+  add_foreign_key "tickets", "concerts"
 end
