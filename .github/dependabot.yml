@@ -1,0 +1,73 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  allow:
+  - dependency-type: direct
+  - dependency-type: indirect
+  ignore:
+  - dependency-name: nokogiri
+    versions:
+    - 1.11.1
+    - 1.11.2
+  - dependency-name: faker
+    versions:
+    - 2.15.1
+    - 2.16.0
+  - dependency-name: nio4r
+    versions:
+    - 2.5.4
+    - 2.5.5
+  - dependency-name: loofah
+    versions:
+    - 2.9.0
+  - dependency-name: minitest
+    versions:
+    - 5.14.3
+  - dependency-name: parser
+    versions:
+    - 3.0.0.0
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: eslint
+    versions:
+    - 7.18.0
+    - 7.19.0
+    - 7.20.0
+    - 7.21.0
+    - 7.22.0
+    - 7.23.0
+    - 7.24.0
+  - dependency-name: "@rails/actioncable"
+    versions:
+    - 6.1.1
+    - 6.1.2
+  - dependency-name: "@rails/ujs"
+    versions:
+    - 6.1.1
+    - 6.1.2
+  - dependency-name: "@rails/activestorage"
+    versions:
+    - 6.1.1
+    - 6.1.2
+  - dependency-name: eslint-plugin-prettier
+    versions:
+    - 3.3.1
+  - dependency-name: "@rails/webpacker"
+    versions:
+    - 5.2.1
+  - dependency-name: lodash
+    versions:
+    - 4.17.20
+  - dependency-name: elliptic
+    versions:
+    - 6.5.3
